@@ -118,14 +118,17 @@ function prueba(elemento){
 	
 	idjugador = id.substring(pos+1,tam);
 	
-	nombre = document.getElementById("nombrejugador_" + idjugador).innerHTML;
-	numero = document.getElementById("numerojugador_" + idjugador).innerHTML;
-	equipo = document.getElementById("equipojugador_" + idjugador).innerHTML;
-	
-	document.getElementById("id").value = nombre;
-	document.getElementById("nombre").value = numero;
-	document.getElementById("caracteristicaUno").value = equipo;
-    document.getElementById("caracteristicaDos").value = equipo;
+	id = document.getElementById("nombrejugador_" + idjugador).innerHTML;
+	nombre = document.getElementById("numerojugador_" + idjugador).innerHTML;
+    caracteristicaUno = document.getElementById("equipojugador_" + idjugador).innerHTML;
+    caracteristicaDos = document.getElementById("equipojugador_" + idjugador).innerHTML;
+    caracteristicaDos = document.getElementById("equipojugador_" + idjugador).innerHTML;
+
+
+    document.getElementById("id").value = id;
+	document.getElementById("nombre").value = nombre;
+	document.getElementById("caracteristicaUno").value = caracteristicaUno;
+    document.getElementById("caracteristicaDos").value = caracteristicaDos;
     document.getElementById("caracteristicaTres").value = equipo;
 
 
