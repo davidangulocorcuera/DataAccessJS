@@ -62,7 +62,7 @@ function pintaTabla(respuesta){
     if(respuestaJSON["estado"] == "ok"){
         console.log("VAMOS BIEN");
 
-        var arrJugadores =  respuestaJSON["Personas"];
+        var arrJugadores =  respuestaJSON["cursos"];
 
         for(var i = 0; i < arrJugadores.length; i++){
             //console.log(arrJugadores[i])
@@ -89,7 +89,7 @@ function pintaTabla(respuesta){
             var caracteristicaTres = document.createElement("h2");
             var textoequipo = document.createTextNode(arrJugadores[i].str_mthird_characteristic);
             caracteristicaTres.appendChild(textoequipo);
-            caracteristicaTres.setAttribute("id","segundaCaracteristica__"+ arrJugadores[i].str_mid );
+            caracteristicaTres.setAttribute("id","terceraCaracteristica__"+ arrJugadores[i].str_mid );
 
             fila.appendChild(nombre);
             fila.appendChild(caracteristicaUno);
@@ -140,7 +140,7 @@ function limpia() {
 function insertarColega(){
     var jugador = {};
 
-    jugador.str_mid = document.getElementById("id").value;
+    jugador.int_id = document.getElementById("id").value;
     jugador.str_mname = document.getElementById("nombre").value;
     jugador.str_mfirst_characteristic = document.getElementById("caracteristicaUno").value;
     jugador.str_msecond_characteristic = document.getElementById("caracteristicaDos").value;
@@ -151,7 +151,7 @@ function insertarColega(){
     var peticion = {};
 
     peticion.peticion = "add";
-    peticion.entity = jugador;
+    peticion.curse = jugador;
 
     console.log("esta es la peticion")
     console.log(peticion);
