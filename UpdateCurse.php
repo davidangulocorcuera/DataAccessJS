@@ -1,7 +1,7 @@
 <?php
 
 require 'bbdd.php'; // Incluimos fichero en la que está la coenxión con la BBDD
-require 'JsonEsperado.php';
+require 'JsonEsperadoCurso.php';
 
 /*
  * Se mostrará siempre la información en formato json para que se pueda leer desde un html (via js)
@@ -24,22 +24,18 @@ if(isset($parameters)){
     // Funcion declarada en jsonEsperado.php
     if(JSONCorrectoAnnadir($mensajeRecibido)){
 
+        $curso = $mensajeRecibido["curse"];
 
-
-
-        $entitie = $mensajeRecibido["entity"];
-
-        $id = $entitie["str_mid"];
-        $name = $entitie["str_mname"];
-        $first_characteristic = $entitie["str_mfirst_characteristic"];
-        $second_characteristic = $entitie["str_msecond_characteristic"];
-        $third_characteristic = $entitie["str_mthird_characteristic"];
-        $id_curse = $entitie["id_curse"];
+        $id = $curso["int_id"];
+        $name = $curso["str_mname"];
+        $first_characteristic = $curso["str_mfirst_characteristic"];
+        $second_characteristic = $curso["str_msecond_characteristic"];
+        $third_characteristic = $curso["str_mthird_characteristic"];
 
 
 
         //$query  = "UPDATE personas SET CaracteristicaDos =  '" . $first_characteristic  . "' WHERE personas.ID = '" . $id . "'";
-        $query = "UPDATE personas SET Nombre = '" . $name . "', CaracteristicaUno = '" .  $first_characteristic . "', CaracteristicaDos = '" . $second_characteristic . "', CaracteristicaTres = '" . $third_characteristic . "'WHERE personas.ID = '" . $id . "'";
+        $query = "UPDATE curso SET Nombre = '" . $name . "', CaracteristicaUno = '" .  $first_characteristic . "', CaracteristicaDos = '" . $second_characteristic . "', CaracteristicaTres = '" . $third_characteristic . "'WHERE curso.ID = '" . $id . "'";
 
         $result = $conn->query ( $query );
 

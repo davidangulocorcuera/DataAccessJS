@@ -204,6 +204,68 @@ function insertarColega(){
 	
 }
 
+function updateColega(){
+    var jugador = {};
+
+    jugador.str_mid = document.getElementById("id").value;
+    jugador.str_mname = document.getElementById("nombre").value;
+    jugador.str_mfirst_characteristic = document.getElementById("caracteristicaUno").value;
+    jugador.str_msecond_characteristic = document.getElementById("caracteristicaDos").value;
+    jugador.str_mthird_characteristic = document.getElementById("caracteristicaTres").value;
+    jugador.id_curse = document.getElementById("id_curse").value;
+
+    console.log(jugador);
+
+    var peticion = {};
+
+    peticion.peticion = "add";
+    peticion.entity = jugador;
+
+    console.log("esta es la peticion")
+    console.log(peticion);
+
+    peticionJSON = JSON.stringify(peticion);
+
+    console.log(peticionJSON);
+
+    var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+    //xmlhttp.open("POST", "http://localhost/davidangulo/crudJson/writeEntity.php");
+
+    xmlhttp.open("POST", "http://localhost/DataAccessJS/UpdateEntity.php");
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+
+            console.log(this.responseText)
+
+            var respuestaJSON = JSON.parse(this.responseText);
+            alert(this.readyState + "" + this.status)
+            if(respuestaJSON["estado"] == "ok"){
+                alert("INSERTADO CORRECTAMENTE. ID: " + respuestaJSON["lastId"] );
+                limpia()
+                cambiaDos()
+
+
+            }else{
+                alert(respuestaJSON["mensaje"]);
+            }
+        }else{
+
+            console.log(this.readyState + " " + this.status);
+            if (this.readyState == 4 && this.status == 404) {
+                alert("URL INCORRECTA");
+
+            }
+        }
+    };
+
+    xmlhttp.send(peticionJSON);
+
+
+}
+
+
 function deletecolega() {
 	alert("has pulsado eliminar")
     var jugador = {};
