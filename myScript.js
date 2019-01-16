@@ -118,6 +118,8 @@ function prueba(elemento){
 	tam = id.length
 	
 	idjugador = id.substring(pos+1,tam);
+
+	alert(elemento)
 	
 	id = document.getElementById("id" + idjugador).innerHTML;
 	nombre = document.getElementById("nombre" + idjugador).innerHTML;
@@ -132,9 +134,11 @@ function prueba(elemento){
 	document.getElementById("caracteristicaUno").value = caracteristicaUno;
     document.getElementById("caracteristicaDos").value = caracteristicaDos;
     document.getElementById("caracteristicaTres").value = caracteristicaTres;
+    document.getElementById("id_curse").value = id_curse
 
 
 }
+
 function limpia() {
     document.getElementById('principal').innerHTML='';
 }

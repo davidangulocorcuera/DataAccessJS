@@ -46,7 +46,7 @@ function cambiaDos(){
     };
 
     //xhttp.open("GET", "http://localhost/DavidAngulo/crudJson/readEntity.php", true);
-    xhttp.open("GET", "http://localhost/DataAccessJS/readEntity.php", true);
+    xhttp.open("GET", "http://localhost/DataAccessJS/readCurse.php", true);
     xhttp.send();
 
 
@@ -163,7 +163,7 @@ function insertarColega(){
     var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
     //xmlhttp.open("POST", "http://localhost/davidangulo/crudJson/writeEntity.php");
 
-    xmlhttp.open("POST", "http://localhost/DataAccessJS/writeEntity.php");
+    xmlhttp.open("POST", "http://localhost/DataAccessJS/writeCurse.php");
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
