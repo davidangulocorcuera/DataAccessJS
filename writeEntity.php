@@ -1,7 +1,7 @@
 <?php
 
 require 'bbdd.php'; // Incluimos fichero en la que está la coenxión con la BBDD
-require 'jsonEsperado.php';
+require 'JsonEsperado.php';
 
 /*
  * Se mostrará siempre la información en formato json para que se pueda leer desde un html (via js)

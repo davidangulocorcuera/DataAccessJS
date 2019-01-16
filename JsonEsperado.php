@@ -10,7 +10,7 @@
     $arrEntityEsperado["str_mfirst_characteristic"] = "DR (Un string)";
     $arrEntityEsperado["str_msecond_characteristic"] = "2 (Un string)";
     $arrEntityEsperado["str_mthird_characteristic"] = "2 (Un string)";
-    $arrEntityEsperado["id_curse"]=2;
+    $arrEntityEsperado["id_curse"]=1;
     
     $arrEsperado["entity"] = $arrEntityEsperado;
     

@@ -46,7 +46,8 @@ function cambiaDos(){
 		}
 	};
 	
-	xhttp.open("GET", "http://localhost/DavidAngulo/crudJson/readEntity.php", true);
+	//xhttp.open("GET", "http://localhost/DavidAngulo/crudJson/readEntity.php", true);
+    xhttp.open("GET", "http://localhost/DataAccessJS/readEntity.php", true);
 	xhttp.send(); 	
 	
 	
@@ -118,39 +119,44 @@ function prueba(elemento){
 	
 	idjugador = id.substring(pos+1,tam);
 	
-	id = document.getElementById("nombrejugador_" + idjugador).innerHTML;
-	nombre = document.getElementById("numerojugador_" + idjugador).innerHTML;
-    caracteristicaUno = document.getElementById("equipojugador_" + idjugador).innerHTML;
-    caracteristicaDos = document.getElementById("equipojugador_" + idjugador).innerHTML;
-    caracteristicaDos = document.getElementById("equipojugador_" + idjugador).innerHTML;
+	id = document.getElementById("id" + idjugador).innerHTML;
+	nombre = document.getElementById("nombre" + idjugador).innerHTML;
+    caracteristicaUno = document.getElementById("caracteristicaUno" + idjugador).innerHTML;
+    caracteristicaDos = document.getElementById("caracteristicaDos" + idjugador).innerHTML;
+    caracteristicaTres = document.getElementById("caracteristicaTres" + idjugador).innerHTML;
+    id_curse = document.getElementById("id_curse" + idjugador).innerHTML;
 
 
     document.getElementById("id").value = id;
 	document.getElementById("nombre").value = nombre;
 	document.getElementById("caracteristicaUno").value = caracteristicaUno;
     document.getElementById("caracteristicaDos").value = caracteristicaDos;
-    document.getElementById("caracteristicaTres").value = equipo;
+    document.getElementById("caracteristicaTres").value = caracteristicaTres;
 
 
 }
+function limpia() {
+    document.getElementById('principal').innerHTML='';
+}
 
 function insertarColega(){
-	
 	var jugador = {};
-	
-	jugador.nombre = document.getElementById("id").value;
-	jugador.numero = document.getElementById("nombre").value;
-	jugador.equipo = document.getElementById("caracteristicaUno").value;
-    jugador.equipo = document.getElementById("caracteristicaDos").value;
-    jugador.equipo = document.getElementById("caracteristicaTres").value;
+
+	jugador.str_mid = document.getElementById("id").value;
+	jugador.str_mname = document.getElementById("nombre").value;
+	jugador.str_mfirst_characteristic = document.getElementById("caracteristicaUno").value;
+    jugador.str_msecond_characteristic = document.getElementById("caracteristicaDos").value;
+    jugador.str_mthird_characteristic = document.getElementById("caracteristicaTres").value;
+    jugador.id_curse = document.getElementById("id_curse").value;
 
 	console.log(jugador);
 	
 	var peticion = {};
 	
 	peticion.peticion = "add";
-	peticion.jugadorAnnadir = jugador;
+	peticion.entity = jugador;
 
+	console.log("esta es la peticion")
 	console.log(peticion);
 	
 	peticionJSON = JSON.stringify(peticion);
@@ -158,22 +164,29 @@ function insertarColega(){
 	console.log(peticionJSON);
 	
 	var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
-	xmlhttp.open("POST", "http://localhost/davidangulo/crudJson/writeEntity.php");
-	xmlhttp.setRequestHeader("Content-Type", "application/json");
-	
+	//xmlhttp.open("POST", "http://localhost/davidangulo/crudJson/writeEntity.php");
+
+    xmlhttp.open("POST", "http://localhost/DataAccessJS/writeEntity.php");
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 
+
+			console.log(this.responseText)
+
 			var respuestaJSON = JSON.parse(this.responseText);
-		
+            alert(this.readyState + "" + this.status)
 			if(respuestaJSON["estado"] == "ok"){
-				
 				alert("INSERTADO CORRECTAMENTE. ID: " + respuestaJSON["lastId"] );
+                limpia()
+				cambiaDos()
+
 					
 			}else{
 				alert(respuestaJSON["mensaje"]);
 			}
 		}else{
+
 			console.log(this.readyState + " " + this.status);
 			if (this.readyState == 4 && this.status == 404) {
 				alert("URL INCORRECTA");
@@ -186,6 +199,44 @@ function insertarColega(){
 	
 	
 }
+
+function deletecolega() {
+	alert("has pulsado eliminar")
+    var jugador = {};
+    jugador.str_mid = document.getElementById("id_delete").value;
+    var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+    //xmlhttp.open("POST", "http://localhost/davidangulo/crudJson/writeEntity.php");
+
+    xmlhttp.open("POST", "http://localhost/DataAccessJS/DeleteEntity.php");
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+
+
+            console.log(this.responseText)
+
+            var respuestaJSON = JSON.parse(this.responseText);
+            alert(this.readyState + "" + this.status)
+            if (respuestaJSON["estado"] == "ok") {
+                alert("INSERTADO CORRECTAMENTE. ID: " + respuestaJSON["lastId"]);
+                limpia()
+                cambiaDos()
+
+
+            } else {
+                alert(respuestaJSON["mensaje"]);
+            }
+        } else {
+
+            console.log(this.readyState + " " + this.status);
+            if (this.readyState == 4 && this.status == 404) {
+                alert("URL INCORRECTA");
+
+            }
+        }
+
+    }
+};
 
 console.log("JS CARGADO");
 
